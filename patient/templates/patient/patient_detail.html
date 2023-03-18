@@ -1,0 +1,141 @@
+{% extends 'patient/base.html' %}
+
+{% load static %} 
+{% load widget_tweaks %} 
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Patient Profile | TM Blood Report</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body style="background-color: #d8e1e7">
+    <main>
+        <div class="card mx-auto mt-5 w-50" style="box-shadow: 7px 7px 7px rgb(73, 72, 72); border-radius: 10px;">
+            <h1 class="card-header text-center bg-light" style="border-radius: 10px;">Patient Profile</h1>
+            <div class="card-body text-center text-white bg-dark" style="border-radius: 10px;">
+              <img
+              src="../static/patient/patient_profile/assets/patient.png"
+              height="120"
+              alt="person"
+              class="story__img"
+            />
+              <h2 class="card-title"> Patient Name: {{patient.fname}} {{patient.lname}}</h2>
+              <h3 class="card-text"> Address: {{patient.address}} | Zipcode: {{patient.zip}}</h3>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="card w-50 mt-5" style="margin-left: 350px; box-shadow: 4px 4px 4px rgb(73, 72, 72);">
+                <div class="card-body" style="margin-left: 65px;">
+                  <a href="{% url 'patient_update' patient.pk %}" class="btn btn-dark mx-2">
+                    <img
+                    src="../static/patient/patient_profile/assets/data-processing.png"
+                    height="40px"
+                    alt="add"
+                    class="profile__buttons-addimg me-2" style="align-items:flex-start;"/>Update Details</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="card w-50 mt-5" style="margin-left: 40px; box-shadow: 4px 4px 4px rgb(73, 72, 72);">
+                <div class="card-body" style="margin-left: 65px;">
+                  
+                  <a href="{% url 'patient_delete' patient.pk %}" class="btn btn-dark mx-2">
+                    <img
+                  src="../static/patient/patient_profile/assets/delete-friend.png"
+                  height="44px"
+                  alt="generate"
+                  class="profile__buttons-addimg me-2" style="align-items:flex-start;"/>Delete Patient</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="card w-50 mt-2" style="margin-left: 350px; box-shadow: 4px 4px 4px rgb(73, 72, 72);">
+                <div class="card-body" style="margin-left: 65px;">
+                  <a href="{% url 'document_upload' patient.pk %}" class="btn btn-dark mx-2">
+                    <img
+                    src="../static/patient/patient_profile/assets/add.png"
+                    height="40px"
+                    alt="add"
+                    class="profile__buttons-addimg me-2" style="align-items:flex-start;"/>Add New Report</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="card w-50 mt-2" style="margin-left: 40px; box-shadow: 4px 4px 4px rgb(73, 72, 72);">
+                <div class="card-body" style="margin-left: 65px;">
+                  
+                  <a href="{% url 'generated_report' patient.pk %}" class="btn btn-dark mx-2">
+                    <img
+                  src="../static/patient/patient_profile/assets/document.png"
+                  height="44px"
+                  alt="generate"
+                  class="profile__buttons-addimg me-2" style="align-items:flex-start;"/>Generate Report</a>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+    </main>
+
+    <!-- Bootstrap JavaScript Libraries -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+      integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="{% static 'patient/add_patient_form/js/jquery.maskedinput.min.js' %}"></script>
+    <script src="{% static 'patient/add_patient_form/js/script.js'  %}"></script>
+  </body>
+</html>
+{% endblock content %}
+
+<!-- <h2>Patient Profile Page</h2>
+
+fname: {{patient.fname}}
+<br />
+lname: {{patient.lname}}
+<br />
+address: {{patient.address}}
+<br />
+zip: {{patient.zip}}
+<br />
+<br />
+
+<a href="{% url 'document_upload' patient.pk %}">Upload Document</a>
+||
+<a href="{% url 'generated_report' patient.pk %}">Generated Reports</a>
+||
+<a href="{% url 'patient_update' patient.pk %}">Update Patient</a>
+||
+<a href="{% url 'patient_delete' patient.pk %}">Delete Patient</a>
+||
+<a href="{% url 'home' %}">Return to Home</a>
+||
+
+</html> -->

@@ -1,0 +1,45 @@
+<div class="patient_profile">
+    <div class="story GB">
+      <div class="row GB">
+        <form method="post" enctype="multipart/form-data">{% csrf_token %}
+          <p class="p_head">Select file to upload:</p>
+          <!-- actual upload which is hidden -->
+          <div class="form__group GB">
+              {% render_field form.name class+="form__input" placeholder='Report Name' type="text" name="text" required="required" %}
+          </div>
+          <br>
+          {% render_field form.document type="file" name="" id='file'  hidden='true' %}
+          <label for='file' id="selector" class="btn-text btn-label">
+            Choose file
+          </label>
+          <!-- name of file chosen -->
+          <script>
+            var loader = function (e) {
+              let file = e.target.files;
+              let show = '<span>selected file : </span>' + file[0].name;
+              let output = document.getElementById('selector');
+              output.innerHTML = show;
+              output.classList.add('active')
+            }
+            // event listener for input
+            let fileInput = document.getElementById("file");
+            fileInput.addEventListener('change', loader)
+          </script>
+       
+        <div class="form__group u-margin-top-medium">
+          <br>
+          <button onclick = "move()" class="btn btn--green">
+            Upload
+          </button>
+          
+          <div id="loader" style="display: none"></div>
+        </div>
+        <script>
+            function move() {
+              document.getElementById("loader").style.display = "";      
+            }
+        </script>
+        </form>
+      </div>
+    </div>
+</div>

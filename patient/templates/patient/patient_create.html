@@ -1,0 +1,104 @@
+{% extends 'patient/base.html' %}
+
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block content %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Add Patient | TM Blood Report</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+
+<body
+    style="background-color: #d8e1e7">
+
+    <main>
+        <form method="post" class="row g-3">{% csrf_token %}
+            <div class="form-label mx-5 mt-5">
+                
+                <h2 class="heading-secondary"> 
+                    <img
+                    src="../static/patient/home/assets/add-user.png"
+                    height="48"
+                    alt="person"
+                    class="story__img me-2" style="align-items:flex-start;"
+                  />Add New Patient</h2>
+              </div>
+            <div class="col-md-6">
+                <label for="inputEmail4" class="form-label mx-5 mt-4">First Name</label>
+                {% render_field form.fname class+="form-control w-50 mx-5" placeholder='First name' type="text" name="firstname" required="required" %}
+                <!-- <input type="text" class="form-control w-50 mx-5" placeholder="First name" aria-label="First name"> -->
+            </div>
+            <div class="col-md-6">
+                <label for="inputPassword4" class="form-label mx-5 mt-4">Last Name</label>
+                {% render_field form.lname  class+="form-control w-50 mx-5 mb-5" placeholder='Last name' type="text" name="lastname" required="required" %}
+                <!-- <input type="text" class="form-control w-50 mx-5 mb-5" placeholder="Last name" aria-label="Last name"> -->
+            </div>
+            <div class="col-md-6">
+                <label for="inputAddress" class="form-label mx-5">Address</label>
+                {% render_field form.address class="form-control w-75 mx-5 mb-5" placeholder="1234 Main St" type="text" name="address" required="required" %}
+                <!-- <input type="text" class="form-control w-75 mx-5 mb-5" id="inputAddress" placeholder="1234 Main St"> -->
+            </div>
+            <div class="col-md-6">
+                <label for="inputZip" class="form-label mx-5">Zip</label>
+                {% render_field form.zip class="form-control w-25 mx-5 mb-5" placeholder="123456" type="number" name="zip" required="required" %}
+                <!-- <input type="text" class="form-control w-25 mx-5 mb-5" id="inputZip" placeholder="123456"> -->
+            </div>
+            <div class="mx-auto" style="width: 200px;">
+                <button type="submit" class="btn btn-dark">Create Patient</button>
+            </div>
+        </form>
+
+    </main>
+    <footer>
+        <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+    </script>
+
+    <script src="{% static 'patient/add_patient_form/js/jquery.maskedinput.min.js' %}"></script>
+    <script src="{% static 'patient/add_patient_form/js/script.js'  %}"></script>
+
+</body>
+
+</html>
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <form method='post'> {% csrf_token %}
+    {{form}}
+    <button type="submit">submit</button>
+</form> -->

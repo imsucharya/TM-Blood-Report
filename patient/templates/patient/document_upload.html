@@ -1,0 +1,243 @@
+{% extends 'patient/base.html' %} {% load static %} {% load widget_tweaks %} 
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Add Patient | TM Blood Report</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+</head>
+
+<body style="background-color: #d8e1e7">
+  <style>
+    /* loader css  */
+    /* Center the loader */
+    #loader {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 1;
+      width: 150px;
+      height: 150px;
+      margin: -75px 0 0 -75px;
+      border: 16px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 16px solid #3498db;
+      width: 120px;
+      height: 120px;
+      -webkit-animation: spin 2s linear infinite;
+      animation: spin 2s linear infinite;
+    }
+
+    @-webkit-keyframes spin {
+      0% {
+        -webkit-transform: rotate(0deg);
+      }
+
+      100% {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Add animation to "page content" */
+    .animate-bottom {
+      position: relative;
+      -webkit-animation-name: animatebottom;
+      -webkit-animation-duration: 1s;
+      animation-name: animatebottom;
+      animation-duration: 1s;
+    }
+
+    @-webkit-keyframes animatebottom {
+      from {
+        bottom: -100px;
+        opacity: 0;
+      }
+
+      to {
+        bottom: 0px;
+        opacity: 1;
+      }
+    }
+
+    @keyframes animatebottom {
+      from {
+        bottom: -100px;
+        opacity: 0;
+      }
+
+      to {
+        bottom: 0;
+        opacity: 1;
+      }
+    }
+
+    #myDiv {
+      display: none;
+      text-align: center;
+    }
+
+    /*  loader css ends */
+  </style>
+  <main>
+    <div class="form-label mx-5 mt-5">  
+        <h2 class="heading-secondary mb-5" style="margin-top: 55px; color: rgb(56, 55, 55); text-align:  center;"> 
+            <img
+            src="../static/patient/patient_profile/assets/file.png"
+            height="80"
+            alt="upload"
+            class="story__img me-2" style="align-items:flex-start;"
+          />Upload Report</h2>
+      </div>
+    <div class="patient_profile">
+      <div class="story GB">
+        <div class="row GB">
+          <form method="post" enctype="multipart/form-data">{% csrf_token %}
+            <p class="p_head" style="color: rgb(56, 55, 55); text-align:  center;">Select file to upload:</p>
+            <!-- actual upload which is hidden -->
+            <div class="form__group GB" style="color: rgb(56, 55, 55); text-align:  center;">
+                {% render_field form.name class+="form__input" placeholder='Report Name' type="text" name="text" required="required" %}
+            </div>
+            <br>
+            <div class="x" style="color: rgb(56, 55, 55); text-align:  center;">
+            {% render_field form.document type="file" name="" id='file'  hidden='true' %}
+            <label for='file' id="selector" class="btn-text btn-label" style="color: rgb(56, 55, 55); text-align:  center;">
+              Choose file
+            </label>
+          </div>
+            <!-- name of file chosen -->
+            <script>
+              var loader = function (e) {
+                let file = e.target.files;
+                let show = '<span>selected file : </span>' + file[0].name;
+                let output = document.getElementById('selector');
+                output.innerHTML = show;
+                output.classList.add('active')
+              }
+              // event listener for input
+              let fileInput = document.getElementById("file");
+              fileInput.addEventListener('change', loader)
+            </script>
+         
+          <div class="form__group u-margin-top-medium">
+            <br>
+            <!-- <button onclick = "move()" class="btn btn--green" style="color: rgb(56, 55, 55); align-items : center;" >
+              Upload
+            </button> -->
+            <div class="mx-auto" style="width: 200px;">
+              <button onclick = "move()" type="submit" class="btn btn-dark" style=" margin-left: 60px;">Upload</button>
+          </div>
+            
+            <div id="loader" style="display: none"></div>
+          </div>
+          <script>
+              function move() {
+                document.getElementById("loader").style.display = "";      
+              }
+          </script>
+          </form>
+        </div>
+      </div>
+  </div>
+    <!-- <div class="body bg-dark" style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: 1px solid;
+          border-radius: 10px;
+          width: 50%;
+          box-shadow: 3px 3px 3px black;
+          padding: 3em;
+          margin: 5em;
+          margin-left: 25em;
+          flex-wrap: wrap;
+          flex-direction: column;
+          align-content: center;
+          align-items: center;
+        ">
+<div class="patient_profile">
+  <div class="story GB">
+    <div class="row GB">
+      <form method="post" enctype="multipart/form-data">{% csrf_token %}
+        <p class="p_head">Select file to upload:</p>
+
+        <div class="form__group GB">
+            {% render_field form.name class+="form__input" placeholder='Report Name' type="text" name="text" required="required" %}
+        </div>
+        <br>
+        {% render_field form.document type="file" name="" id='file'  hidden='true' %}
+        <label for='file' id="selector" class="btn-text btn-label">
+          Choose file
+        </label>
+
+        <script>
+          var loader = function (e) {
+            let file = e.target.files;
+            let show = '<span>selected file : </span>' + file[0].name;
+            let output = document.getElementById('selector');
+            output.innerHTML = show;
+            output.classList.add('active')
+
+          let fileInput = document.getElementById("file");
+          fileInput.addEventListener('change', loader)
+        </script>
+     
+      <div class="form__group u-margin-top-medium">
+        <br>
+        <button onclick = "move()" class="btn btn--green">
+          Upload
+        </button>
+        
+        <div id="loader" style="display: none"></div>
+      </div>
+      <script>
+          function move() {
+            document.getElementById("loader").style.display = "";      
+          }
+      </script>
+      </form>
+    </div>
+  </div>
+</div>
+    </div> -->
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+    crossorigin="anonymous"></script>
+
+  <script src="{% static 'patient/add_patient_form/js/jquery.maskedinput.min.js' %}"></script>
+  <script src="{% static 'patient/add_patient_form/js/script.js'  %}"></script>
+</body>
+
+</html>
+{% endblock content %}
+
+<!-- <form method='post' enctype="multipart/form-data">{% csrf_token %}
+    {{form}}
+    <button method='submit'>Submit</button>
+</form>
+
+    {% for item in data %}
+    <ol>{{item.name}} | {{item.Value}} | {{item.Unit}}</ol>
+    {% endfor %} -->

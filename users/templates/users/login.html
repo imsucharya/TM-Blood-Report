@@ -1,0 +1,80 @@
+{% extends 'patient/base.html' %}
+
+{% load static %}
+{% load widget_tweaks %}
+{%block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Login | TM Blood Report</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+</head>
+
+<body style="background-color: #d8e1e7">
+  <main>
+    <div class="container px-xl-0">
+      <div class="row justify-content-center" style="display: flex; justify-content: center; align-items: center;">
+        <div class="col-1g-12 col-md-8">
+          <div class="mb-3 mb-1g-5 logo d-block d-xl-none text-center text-lg-left logo_mobile">
+            TM Blood Report
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-label mt-5" >
+                <center>
+            <h2 class="heading-secondary">
+              TM Blood report manager helps you maintain patient blood
+              reports, maintain history and keep track of progress.</h2></center>
+          </div>
+
+
+          <div class="body bg-dark"
+            style="display: flex; justify-content: center; align-items: center; border: 1px solid; border-radius: 10px; width: 50%; box-shadow: 3px 3px 3px black; padding: 3em;margin: 3em; margin-left: 20em;flex-wrap: wrap;flex-direction: column;align-content: center;align-items: center;">
+            <form method="Post" class="text-center mt-75">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-xl-9">
+                  <div class="mb-3 row text-center">
+                    <label for="staticEmail" class="col-sm-2 col-form-label mt-2" style="margin-left:240px; color: white;">Username</label>
+                  <div class="x" style="margin-left: 130px;">{% render_field form.username class+="form-control w-50 mx-5 text-center" placeholder='username' type="text" name="username" required="required" %}</div>
+                </div>
+                <div class="mb-3 row text-center">
+                  <label for="inputPassword" class="col-sm-2 col-form-label" style="margin-left:240px;color: white;">Password</label>
+                  <div class="x" style="margin-left: 130px;">{% render_field form.password class+="form-control w-50 mx-5 text-center" placeholder='password' type="password" name="password" required="required" %}</div>
+                  </div>
+                  <div class="x" style="margin-left: 140px;">
+                  <button type="submit" class="btn btn-light mt-4">
+                    Login
+                  </button></div>
+                  <div class="mt-4 color-heading text-adaptive text-center" style="margin-left: 134px; color: white;">
+                    <center>By signing up, you agree to the</center>
+                    <a href="#" class="link color-heading text-center"><center>Terms of Service</center></a>
+                  </div>
+                </div>
+              </div>
+            </form>
+            </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>
+
+{% endblock content %}
+
+<!-- <form method="post">
+  {% csrf_token %} {{form}}
+  <button type="submit">Submit</button>
+</form> -->

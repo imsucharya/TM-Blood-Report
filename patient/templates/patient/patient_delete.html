@@ -1,0 +1,95 @@
+{% extends 'patient/base.html' %}
+
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block content %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Delete Patient | TM Blood Report</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+
+<body
+    style="background-color: #d8e1e7">
+    <main>
+        <div class="body bg-dark"
+        style="display: flex; justify-content: center; align-items: center; border: 1px solid; border-radius: 10px; width: 50%; box-shadow: 3px 3px 3px black; padding: 3em;margin: 5em; margin-left: 25em;flex-wrap: wrap;flex-direction: column;align-content: center;align-items: center;">
+        <div class="form-label mx-5 mt-5">
+                
+            <h2 class="heading-secondary mb-5" style="color: white;"> 
+                <img
+                src="../static/patient/patient_profile/assets/delete-friend.png"
+                height="80"
+                alt="person"
+                class="story__img me-2" style="align-items:flex-start;"
+              />Delete Patient</h2>
+          </div>
+          <form method="post">{% csrf_token %}
+            <p class="x mx-4" style="text-align:center; color: white;">Are you sure you want to delete "{{ object }}"?</p>
+            {{ form }}
+            <button type="submit" class="btn btn-light mt-5 mx-auto" style="width: 500px;" value="Confirm">Confirm</button>
+        </form>
+    </div>
+    </main>
+
+<footer>
+    <!-- place footer here -->
+</footer>
+<!-- Bootstrap JavaScript Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+</script>
+
+<script src="{% static 'patient/add_patient_form/js/jquery.maskedinput.min.js' %}"></script>
+<script src="{% static 'patient/add_patient_form/js/script.js'  %}"></script>
+
+</body>
+
+</html>
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient deleted</title>
+</head>
+<body>
+    <form method="post">{% csrf_token %}
+        <p>Are you sure you want to delete "{{ object }}"?</p>
+        {{ form }}
+        <input type="submit" value="Confirm">
+    </form>
+</body>
+</html>
